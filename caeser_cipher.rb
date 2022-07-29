@@ -1,20 +1,16 @@
-letter = "S"
-puts letter
-puts letter.getbyte(0) + 1
-letter.setbyte(0, letter.getbyte(0) + 1)
-puts letter
 
-z = "Z"
-puts z
-z.setbyte(0, z.getbyte(0) + 1)
-puts z
-
-test = "apple"
-
-testArray = test.split(//)
-puts "#{testArray} test array"
-testArray = testArray.map do |char|  
-    char.setbyte(0, char.getbyte(0) + 1)
-    char
+def caeser_cipher(text, shift)
+    encrypted_text = text.split(//).map do |char|
+        if char === char.capitalize
+            char.match(/[A-Z]/) ? char.setbyte(0, char.getbyte(0) + shift > 90 ? char.getbyte(0) + shift - 90 + 64 : char.getbyte(0) + shift) : char
+            char
+        else 
+            char.match(/[a-z]/) ? char.setbyte(0, char.getbyte(0) + shift > 122 ? char.getbyte(0) + shift - 122 + 96 : char.getbyte(0) + shift) : char
+            char
+        end
+    end
+    encrypted_text.join()
 end
-puts "#{testArray} modified test array"
+
+puts caeser_cipher("What a string!", 5)
+
